@@ -1,0 +1,162 @@
+/* ===== PREMIUM NAVBAR STYLE ===== */
+.navbar {
+    background: linear-gradient(135deg, #0a2540, #1f4e6e);
+    backdrop-filter: blur(4px);
+    padding: 0.8rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.premium-nav {
+    background: linear-gradient(145deg, #0f2b3d, #0a1c2a);
+}
+
+/* Brand Area */
+.nav-brand {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.nav-brand:hover {
+    transform: translateY(-1px);
+}
+
+.nav-brand i {
+    font-size: 1.6rem;
+    color: #fbbf24;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.brand-text {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #ffffff, #cbd5e6);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.brand-badge {
+    font-size: 0.7rem;
+    font-weight: 500;
+    background: rgba(255,255,255,0.15);
+    padding: 0.2rem 0.6rem;
+    border-radius: 40px;
+    color: #b9d0ff;
+    letter-spacing: 0.3px;
+    backdrop-filter: blur(2px);
+}
+
+/* Nav Actions (user info & logout) */
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255,255,255,0.1);
+    padding: 0.4rem 1rem;
+    border-radius: 40px;
+    backdrop-filter: blur(4px);
+    transition: all 0.2s;
+}
+
+.user-info:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+.user-info i {
+    font-size: 1rem;
+    color: #94a3b8;
+}
+
+.user-email {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #e2e8f0;
+    max-width: 180px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Premium Logout Button */
+.premium-logout {
+    background: rgba(220, 38, 38, 0.2);
+    border: 1px solid rgba(220, 38, 38, 0.4);
+    color: white;
+    padding: 0.5rem 1.2rem;
+    border-radius: 40px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.premium-logout:hover {
+    background: #dc2626;
+    border-color: #dc2626;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(220,38,38,0.3);
+}
+
+.premium-logout i {
+    font-size: 0.8rem;
+}
+
+/* Hamburger */
+.premium-hamburger {
+    display: none;
+    background: rgba(255,255,255,0.1);
+    border: none;
+    border-radius: 40px;
+    color: white;
+    font-size: 1.3rem;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.premium-hamburger:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.6rem 1rem;
+    }
+    .brand-text {
+        font-size: 1.2rem;
+    }
+    .brand-badge {
+        font-size: 0.6rem;
+    }
+    .nav-actions {
+        display: none;
+    }
+    .premium-hamburger {
+        display: block;
+    }
+    .user-email {
+        max-width: 120px;
+    }
+}

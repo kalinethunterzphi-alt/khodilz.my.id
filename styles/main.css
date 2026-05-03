@@ -1,0 +1,141 @@
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #f4f6fa;
+    color: #1e293b;
+    line-height: 1.5;
+}
+
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.layout-wrapper {
+    display: flex;
+    flex: 1;
+}
+
+.main-content {
+    flex: 1;
+    padding: 2rem;
+    background: #f8fafc;
+    transition: all 0.3s ease;
+}
+
+/* Loading */
+.loading-wrapper, .loading-spinner {
+    text-align: center;
+    padding: 3rem;
+    color: #4b5563;
+    font-size: 1.1rem;
+}
+
+.loading-spinner i, .loading-wrapper i {
+    margin-right: 0.5rem;
+}
+
+/* Dashboard header */
+.dashboard-header h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #0f172a;
+}
+
+.dashboard-header p {
+    color: #475569;
+    margin-bottom: 2rem;
+}
+
+.centered-message {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 60vh;
+}
+
+/* Product Detail */
+.product-detail-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 25px -5px rgba(0,0,0,0.05);
+    overflow: hidden;
+}
+
+.detail-card {
+    padding: 2rem;
+}
+
+.detail-image {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.detail-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.detail-price {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2563eb;
+    margin-bottom: 1.5rem;
+}
+
+.dropdown-description {
+    border-top: 1px solid #e2e8f0;
+    margin-top: 1rem;
+}
+
+.dropdown-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    background: #f9fafb;
+    border-radius: 0.75rem;
+    padding: 0 1rem;
+}
+
+.dropdown-content.open {
+    max-height: 500px;
+    padding: 1rem;
+}
+
+.dropdown-content p {
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main-content {
+        padding: 1rem;
+    }
+    .detail-title {
+        font-size: 1.5rem;
+    }
+}

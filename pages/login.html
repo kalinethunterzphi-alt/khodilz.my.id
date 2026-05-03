@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Khodilz</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/auth.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .google-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            width: 100%;
+            padding: 0.75rem;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 2rem;
+            color: #1e293b;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.2s ease;
+            margin-bottom: 1rem;
+        }
+        .google-btn i { font-size: 1.2rem; color: #db4437; }
+        .google-btn:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+        .separator {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #94a3b8;
+            font-size: 0.8rem;
+            margin: 1rem 0;
+        }
+        .separator::before, .separator::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .separator::before { margin-right: 0.5rem; }
+        .separator::after { margin-left: 0.5rem; }
+        .google-login-form {
+            display: none;
+        }
+        .google-login-form.active {
+            display: block;
+        }
+        .normal-login-form {
+            display: block;
+        }
+        .normal-login-form.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body class="auth-body">
+    <div class="auth-grid">
+        <div class="auth-col form-col">
+            <div class="auth-card">
+                <div class="auth-header">
+                    <i class="fas fa-lock-open"></i>
+                    <h2>Masuk ke Akun</h2>
+                    <p>Khodilz Digital Solutions</p>
+                </div>
+
+                <!-- Tombol Google -->
+                <a href="https://accounts.google.com/o/oauth2/v2/auth?client_id=498158056430-dgncbmfkco3j9v0np844iu07o6fr8qqq.apps.googleusercontent.com&redirect_uri=https://khodilz.my.id/api/google-auth&response_type=code&scope=email%20profile" class="google-btn">
+                    <i class="fab fa-google"></i> Lanjutkan dengan Google
+                </a>
+
+                <div class="separator">atau login dengan email</div>
+
+                <!-- Form login manual (tanpa Google) -->
+                <div id="normalLoginForm" class="normal-login-form">
+                    <form id="loginForm">
+                        <div class="input-group">
+                            <label><i class="fas fa-envelope"></i> Email</label>
+                            <input type="email" id="loginEmail" placeholder="email@domain.com" required>
+                        </div>
+                        <div class="input-group">
+                            <label><i class="fas fa-key"></i> Password</label>
+                            <input type="password" id="loginPassword" placeholder="Min. 8 karakter" required>
+                        </div>
+                        <div id="loginError" class="error-message hidden"></div>
+                        <button type="submit" class="auth-btn"><i class="fas fa-sign-in-alt"></i> Login</button>
+                    </form>
+                </div>
+
+                <!-- Form login via Google (token, email readonly) -->
+                <div id="googleLoginForm" class="google-login-form">
+                    <form id="googleLoginFormElement">
+                        <div class="input-group">
+                            <label><i class="fas fa-envelope"></i> Email (dari Google)</label>
+                            <input type="email" id="googleEmail" readonly placeholder="Email akan terisi otomatis">
+                        </div>
+                        <div class="input-group">
+                            <label><i class="fas fa-key"></i> Password</label>
+                            <input type="password" id="googlePassword" placeholder="Masukkan password akun Anda" required>
+                        </div>
+                        <div id="googleLoginError" class="error-message hidden"></div>
+                        <button type="submit" class="auth-btn"><i class="fas fa-sign-in-alt"></i> Login dengan Google</button>
+                    </form>
+                </div>
+
+                <div class="auth-footer">
+                    Belum punya akun? <a href="/pages/register.html">Daftar sekarang</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="auth-col collage-col">
+            <div class="collage-container">
+                <img src="/images/website.png" alt="Web" class="collage-img c1">
+                <img src="/images/nokos.png" alt="Nokos" class="collage-img c2">
+                <img src="/images/osint.png" alt="Osint" class="collage-img c3">
+                <img src="/images/panel.png" alt="Panel" class="collage-img c4">
+            </div>
+        </div>
+    </div>
+    <script src="/scripts/utils.js"></script>
+    <script src="/scripts/auth.js"></script>
+    <script>
+        (function() {
+            // Cek token di URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const token = urlParams.get('token');
+            const normalFormDiv = document.getElementById('normalLoginForm');
+            const googleFormDiv = document.getElementById('googleLoginForm');
+            const googleEmailInput = document.getElementById('googleEmail');
+            const googlePasswordInput = document.getElementById('googlePassword');
+            const googleForm = document.getElementById('googleLoginFormElement');
+            const googleError = document.getElementById('googleLoginError');
+
+            if (token) {
+                // Tampilkan form Google, sembunyikan form manual
+                normalFormDiv.classList.add('hidden');
+                googleFormDiv.classList.add('active');
+                // Ambil data session berdasarkan token
+                fetch(`/api/get-session?token=${encodeURIComponent(token)}`)
+                    .then(res => {
+                        if (!res.ok) throw new Error('Session invalid');
+                        return res.json();
+                    })
+                    .then(data => {
+                        googleEmailInput.value = data.email;
+                    })
+                    .catch(err => {
+                        googleError.textContent = 'Sesi tidak valid. Silakan login ulang.';
+                        googleError.classList.remove('hidden');
+                        // Sembunyikan form Google, tampilkan manual
+                        normalFormDiv.classList.remove('hidden');
+                        googleFormDiv.classList.remove('active');
+                    });
+            } else {
+                normalFormDiv.classList.remove('hidden');
+                googleFormDiv.classList.remove('active');
+            }
+
+            // Submit form Google login
+            googleForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const password = googlePasswordInput.value;
+                if (!password) {
+                    googleError.textContent = 'Password harus diisi';
+                    googleError.classList.remove('hidden');
+                    return;
+                }
+                const submitBtn = googleForm.querySelector('button');
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Memproses...';
+
+                try {
+                    const response = await fetch('/api/google-login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ token, password })
+                    });
+                    const result = await response.json();
+                    if (response.ok && result.success) {
+                        // Buat session di localStorage (agar dashboard asli bisa mengakses)
+                        localStorage.setItem('khodilz_user', result.email);
+                        // Optional: tambahkan ke users array agar sesuai manual? Tidak perlu, kita hanya butuh session.
+                        window.location.href = '/pages/dashboard.html';
+                    } else {
+                        throw new Error(result.error || 'Login gagal');
+                    }
+                } catch (err) {
+                    googleError.textContent = err.message;
+                    googleError.classList.remove('hidden');
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Login dengan Google';
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

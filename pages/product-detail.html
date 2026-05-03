@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Produk | Khodilz</title>
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/navbar.css">
+    <link rel="stylesheet" href="/styles/sidebar.css">
+    <link rel="stylesheet" href="/styles/card.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <nav class="navbar premium-nav">
+            <div class="nav-brand">
+                <i class="fas fa-crown"></i>
+                <span class="brand-text">Khodilz</span>
+                <span class="brand-badge">SecureCore</span>
+            </div>
+            <div class="nav-actions">
+                <div class="user-info">
+                    <i class="fas fa-user-circle"></i>
+                    <span id="userEmailDisplay" class="user-email"></span>
+                </div>
+                <button id="logoutBtn" class="logout-btn premium-logout">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+            <button class="hamburger premium-hamburger" id="hamburgerBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+
+        <div class="layout-wrapper">
+            <aside class="sidebar soft-gray" id="sidebar">
+                <div class="sidebar-menu">
+                    <div class="menu-section">
+                        <h4><i class="fas fa-globe"></i> Navigasi</h4>
+                        <ul>
+                            <li><a href="/pages/dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                        </ul>
+                    </div>
+                    <div class="menu-section">
+                        <h4><i class="fas fa-address-card"></i> Contact</h4>
+                        <ul>
+                            <li><a href="https://wa.me/6285141660782" target="_blank"><i class="fab fa-whatsapp"></i>
+                                    WhatsApp: 085141660782</a></li>
+                            <li><a href="https://instagram.com/yoomaalaajkaa_" target="_blank"><i
+                                        class="fab fa-instagram"></i> Instagram: yoomaalaajkaa_</a></li>
+                            <!-- TAMBAHKAN QRIS DI SINI -->
+                            <li><a href="#" id="qrisBtnSidebar" class="qris-menu"><i class="fas fa-qrcode"></i> Payment
+                                    Qris</a></li>
+                        </ul>
+                    </div>
+                    <div class="menu-section requirements-section">
+                        <div class="requirements-header">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>Purchase Requirements</h4>
+                        </div>
+                        <div class="requirements-card">
+                            <div class="requirement-item critical">
+                                <i class="fas fa-skull-crossbones"></i>
+                                <span>KAMI TIDAK BERTANGGUNG JAWAB ATAS SEMUA YANG TERJADI</span>
+                            </div>
+                            <div class="requirement-item payment">
+                                <i class="fas fa-money-bill-wave"></i>
+                                <span>No Payment, No Delivery!</span>
+                            </div>
+                            <div class="requirement-item info">
+                                <i class="fas fa-file-signature"></i>
+                                <span>Baca ketentuan sebelum pembelian</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            <main class="main-content">
+                <div class="product-detail-container" id="productDetailContainer">
+                    <div class="loading-wrapper"><i class="fas fa-spinner fa-pulse"></i> Memuat detail produk...</div>
+                </div>
+            </main>
+        </div>
+    </div>
+    <div id="qrisModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-header">
+                <i class="fas fa-qrcode"></i>
+                <h3>Pembayaran QRIS</h3>
+            </div>
+            <div class="modal-body">
+                <div class="qris-image-wrapper">
+                    <img src="/images/qris.png" alt="QRIS Code" id="qrisImage"
+                        onerror="this.src='https://placehold.co/400x400?text=QRIS+Code+Placeholder'">
+                </div>
+                <div class="qris-details">
+                    <p><i class="fas fa-store"></i> Merchant: Khodilz Digital</p>
+                    <p><i class="fas fa-credit-card"></i> Nomor Virtual Account: <strong
+                            id="vaNumber">1234-5678-9012-3456</strong>
+                        <button class="copy-btn" data-copy="vaNumber"><i class="fas fa-copy"></i></button>
+                    </p>
+                    <p><i class="fas fa-info-circle"></i> Scan QRIS atau gunakan VA di atas.</p>
+                    <div class="qris-amount">
+                        <label>Nominal (jika tidak tetap):</label>
+                        <input type="number" id="qrisAmount" placeholder="Masukkan nominal">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="close-modal-btn">Tutup</button>
+            </div>
+        </div>
+    </div>
+    <script src="/scripts/utils.js"></script>
+    <script src="/scripts/auth.js"></script>
+    <script src="/scripts/product.js"></script>
+</body>
+
+</html>

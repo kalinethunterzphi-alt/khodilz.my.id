@@ -1,0 +1,269 @@
+/* ===== BASE auth.css (upgrade total) ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.auth-body {
+    background: linear-gradient(145deg, #eef2ff 0%, #e0e7f5 100%);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+/* Layout grid 2 kolom */
+.auth-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1300px;
+    width: 100%;
+    background: white;
+    border-radius: 2rem;
+    overflow: hidden;
+    box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.25);
+    min-height: 600px;
+}
+
+.auth-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.form-col {
+    background: white;
+}
+
+.collage-col {
+    background: linear-gradient(135deg, #f8faff 0%, #f0f4fe 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Card form */
+.auth-card {
+    width: 100%;
+    max-width: 400px;
+    background: white;
+    border-radius: 1.5rem;
+    padding: 1.5rem;
+}
+
+.auth-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.auth-header i {
+    font-size: 3rem;
+    color: #2563eb;
+    background: #eef2ff;
+    padding: 1rem;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.auth-header h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.auth-header p {
+    color: #475569;
+    font-size: 0.9rem;
+}
+
+/* Input modern */
+.input-group {
+    margin-bottom: 1.2rem;
+}
+
+.input-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #1e293b;
+    font-size: 0.85rem;
+}
+
+.input-group label i {
+    margin-right: 0.5rem;
+    color: #3b82f6;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+    background: #f9fafb;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    background: white;
+}
+
+/* Button gradient */
+.auth-btn {
+    width: 100%;
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    color: white;
+    border: none;
+    padding: 0.85rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 0.5rem;
+    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+}
+
+.auth-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+    background: linear-gradient(135deg, #1d4ed8, #1e3a8a);
+}
+
+/* Error message */
+.error-message {
+    color: #dc2626;
+    background: #fee2e2;
+    padding: 0.6rem;
+    border-radius: 0.6rem;
+    margin: 1rem 0;
+    font-size: 0.85rem;
+    text-align: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.auth-footer {
+    text-align: center;
+    margin-top: 1.8rem;
+    font-size: 0.9rem;
+    color: #475569;
+}
+
+.auth-footer a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+/* ===== IMAGE COLLAGE ===== */
+.collage-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    margin: 0 auto;
+}
+
+.collage-img {
+    position: absolute;
+    width: 160px;
+    height: auto;
+    border-radius: 1.2rem;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+    border: 3px solid white;
+    object-fit: cover;
+}
+
+/* Posisi gambar */
+.c1 {
+    top: 10%;
+    left: 5%;
+    transform: rotate(-6deg);
+    z-index: 1;
+}
+
+.c2 {
+    top: 45%;
+    right: 5%;
+    transform: rotate(10deg);
+    z-index: 2;
+}
+
+.c3 {
+    bottom: 10%;
+    left: 15%;
+    transform: rotate(-4deg);
+    z-index: 3;
+}
+
+.c4 {
+    top: 30%;
+    right: 25%;
+    transform: rotate(12deg);
+    z-index: 0;
+}
+
+.collage-img:hover {
+    transform: scale(1.08) rotate(0deg);
+    z-index: 10;
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+/* Animasi floating ringan */
+@keyframes float {
+    0% { transform: translateY(0px) rotate(var(--rot, 0deg)); }
+    50% { transform: translateY(-8px) rotate(var(--rot, 0deg)); }
+    100% { transform: translateY(0px) rotate(var(--rot, 0deg)); }
+}
+
+.c1 { --rot: -6deg; animation: float 5s infinite ease-in-out; }
+.c2 { --rot: 10deg; animation: float 5s infinite ease-in-out 0.5s; }
+.c3 { --rot: -4deg; animation: float 5s infinite ease-in-out 1s; }
+.c4 { --rot: 12deg; animation: float 5s infinite ease-in-out 1.5s; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+    .auth-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        min-height: auto;
+    }
+    .collage-col {
+        order: 1;
+        padding: 1rem;
+    }
+    .form-col {
+        order: 2;
+        padding: 1.5rem;
+    }
+    .collage-container {
+        height: 240px;
+    }
+    .collage-img {
+        width: 100px;
+    }
+    .c1 { top: 5%; left: 5%; }
+    .c2 { top: 50%; right: 5%; }
+    .c3 { bottom: 5%; left: 15%; }
+    .c4 { top: 20%; right: 20%; }
+    .auth-card {
+        padding: 1rem;
+    }
+    .auth-header h2 {
+        font-size: 1.5rem;
+    }
+}
